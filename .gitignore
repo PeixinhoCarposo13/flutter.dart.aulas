@@ -1,0 +1,50 @@
+# Dart / Flutter - generated files
+.dart_tool/
+.packages
+.pub/
+.pub-cache/
+build/
+coverage/
+.flutter-plugins
+.flutter-plugins-dependencies
+**/flutter_*.png
+
+# Local IDE / OS state
+.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.DS_Store
+Thumbs.db
+*.log
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.p12
+*.pfx
+*.jks
+*.keystore
+key.properties
+**/android/local.properties
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/ServiceDefinitions.json
+**/GoogleService-Info.plist
+**/google-services.json
+**/firebase_options.dart
+credentials.json
+secrets.json
+
+# Flutter platform-generated ephemeral files
+**/ios/Flutter/ephemeral/
+**/macos/Flutter/ephemeral/
+**/windows/flutter/ephemeral/
+**/linux/flutter/ephemeral/
+
+# Keep pubspec.lock for reproducible application/CLI builds.
+# Never ignore source, tests, pubspec.yaml, or README files.

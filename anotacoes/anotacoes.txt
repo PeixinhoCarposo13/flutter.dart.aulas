@@ -1,0 +1,46 @@
+1º -> dart create cli: O dart create cli gera um projeto Dart básico chamado "cli" (de Interface de Linha de Comando). 
+      Ele configura os arquivos e diretórios essenciais de que você precisa;
+
+2º -> cd cli: me movo para a pasta cli;
+
+3º -> dart run: Este comando instrui o Dart a executar seu programa;
+
+4º -> dentro da pasta bin, vai estar o arquivo principal "cli.dart", lá você vai encontrar sua main;
+
+5º -> interpolação de strings: Ela permite incorporar o valor da variável diretamente 
+      em uma string, prefixando o nome da variável com um $sinal;
+
+6º -> para visualizar o version vou usar dart bin/cli.dart version, sendo que bin é a pasta e cli.dart é o nome do 
+      aquivo main;
+
+7º -> arguments.isEmpty: Verifica se nenhum argumento de linha de comando foi fornecido.
+
+8º -> arguments.first: Acessa o primeiro argumento, que você está usando como nosso comando.
+
+9º -> const é usado para deixar uma variavel com um valor único, não sendo possivel muda-lo.
+
+10º -> List<String>? arguments: significa que a arguments própria lista pode ser null.
+
+11º -> O Dart impõe uma segurança robusta contra valores nulos , o que significa que você precisa declarar explicitamente 
+       quando uma variável pode ser nula. Qualquer variável que não seja marcada como anulável tem a garantia de nunca 
+       ser nula, mesmo em produção.
+
+12º -> final: As variáveis ​com final ​só podem ser definidas uma vez e são usadas quando você não pretende alterá-las 
+       novamente no código.
+
+13º -> arguments.sublist(1): cria uma nova lista contendo todos os elementos da arguments lista após o primeiro elemento.
+
+14º -> arguments.length > 1 ? ... : null: é um operador condicional. Ele garante que, se nenhum argumento for fornecido 
+após o search comando, inputArgs se torne null, correspondendo ao comportamento do código de exemplo para searchWikipedia
+o arguments parâmetro de List<String>?.
+
+15º -> dart:io: É uma biblioteca central no SDK do Dart e fornece APIs para lidar com arquivos, diretórios, sockets, clientes 
+       e servidores HTTP, e muito mais.
+
+16º -> stdin.readLineSync() ?? '': Lê a entrada do usuário. Embora stdin.readLineSync() possa retornar nulo, o operador de 
+       coalescência nula (`\ ?? n`) é usado para fornecer uma string vazia (`\ ''n`) como alternativa caso a entrada seja 
+       nula. Esta é uma maneira concisa de garantir que a variável seja uma string não nula.
+
+17º -> arguments.join(' '): Concatena todos os elementos da arguments lista em uma única string, usando um espaço como separador. 
+       Por exemplo, ['Dart', 'Programming']torna-se "Dart Programming". Isso é crucial para tratar entradas de linha de 
+       comando com várias palavras como uma única frase de pesquisa.
