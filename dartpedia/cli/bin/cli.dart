@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:http/http.dart' as http;
+
 const version = '0.0.1';
 
 void main(List<String> arguments) {
@@ -7,43 +9,63 @@ void main(List<String> arguments) {
     printUsage();
   } else if (arguments.first == 'version') {
     print('Dartpedia CLI version $version');
-  } else if (arguments.first == 'search') {
+  } else if (arguments.first == 'wikipedia') {
+    // O comando wikipedia consulta o resumo de um artigo.
+    // Passa os argumentos depois de wikipedia para a função de busca.
     final inputArgs = arguments.length > 1 ? arguments.sublist(1) : null;
-    searchWikipedia(inputArgs);
+    searchWikipedia(inputArgs); // Inicia a busca; main não usa o resultado nem executa outra etapa depois dela.
   } else {
-    printUsage();
+    printUsage(); // Mostra a ajuda quando o comando não é reconhecido.
   }
 }
 
-void printUsage() {
-  print(
-    "The following commands are valid: 'help', 'version', 'search <ARTICLE-TITLE>'",
-  );
-}
-
 /*
-Declara uma final String articleTitle variável. Isso permite que a análise estática detecte 
-que ela articleTitle será um valor String e não será nula.
-Em seguida, uma if/else instrução verifica se os argumentos da linha de comando para a pesquisa 
-foram fornecidos.
-Caso faltem argumentos, o programa solicita informações ao usuário, lê a entrada usando `read` 
-stdin.readLineSync() e lida de forma segura com os casos em que nenhuma entrada é fornecida.
-Caso existam argumentos , ele arguments.join(' ') os combina em uma única string de busca.
+articleTitle recebe o título do artigo e só pode ser atribuído uma vez, pois é final.
+Se nenhum título vier nos argumentos, a função solicita a entrada pelo terminal.
+Uma entrada nula ou vazia encerra a função. Caso existam argumentos, join(' ')
+junta as palavras em uma única string para formar o título.
 */
-void searchWikipedia(List<String>? arguments) {
+void searchWikipedia(List<String>? arguments) async {
+  // async permite usar await para aguardar a resposta da requisição.
   final String articleTitle;
 
-  // If the user didn't pass in arguments, request an article title.
+  // Se o título não foi passado como argumento, solicita a entrada pelo terminal.
   if (arguments == null || arguments.isEmpty) {
     print('Please provide an article title.');
-    // Await input and provide a default empty string if the input is null.
-    articleTitle = stdin.readLineSync() ?? '';
+    // Lê a entrada para verificar se ela é nula ou está vazia.
+    final inputFromStdin = stdin.readLineSync();
+    if (inputFromStdin == null || inputFromStdin.isEmpty) {
+      print('No article title provided. Exiting.');
+      return; // Encerra a função quando nenhum título é informado.
+    }
+    articleTitle = inputFromStdin;
   } else {
-    // Otherwise, join the arguments into a single string.
+    // Junta os argumentos em um único título, separando as palavras por espaços.
     articleTitle = arguments.join(' ');
   }
 
   print('Looking up articles about "$articleTitle". Please wait.');
-  print('Here ya go!');
-  print('(Pretend this is an article about "$articleTitle")');
+
+  // Aguarda a resposta da função que consulta a API da Wikipédia.
+  var articleContent = await getWikipediaArticle(articleTitle);
+  print(
+    articleContent,
+  ); // Exibe o corpo da resposta; por enquanto, o JSON ainda não é tratado.
+}
+
+Future<String> getWikipediaArticle(String articleTitle) async {
+  final url = Uri.https(
+    'en.wikipedia.org', // Domínio da Wikipédia em inglês.
+    '/api/rest_v1/page/summary/$articleTitle', // Caminho da API para obter o resumo do artigo.
+  );
+  final response = await http.get(
+    url,
+  ); // Faz a requisição HTTP e aguarda a resposta.
+
+  if (response.statusCode == 200) {
+    return response.body; // Retorna o corpo da resposta quando o status é 200.
+  }
+
+  // Retorna uma mensagem de erro quando o status da resposta não é 200.
+  return 'Error: Failed to fetch article "$articleTitle". Status code: ${response.statusCode}';
 }

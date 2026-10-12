@@ -4,7 +4,7 @@ Criei este repositório para guardar as aulas, anotações e exercícios que est
 
 ## O que tem aqui
 
-- [Minhas anotações de Dart](anotacoes/introducao_dart.md)
+- [Minhas anotações de Dart](anotacoes/anotacoes.txt)
 - [Dartpedia CLI](dartpedia/cli/README.md), o projeto que estou desenvolvendo nas aulas
 - [Código principal do projeto](dartpedia/cli/bin/cli.dart)
 
@@ -16,12 +16,17 @@ Criei este repositório para guardar as aulas, anotações e exercícios que est
 - Usar `const` e `final`.
 - Trabalhar com null safety e os operadores `?` e `??`.
 - Ler o que o usuário digita usando `dart:io`.
+- Adicionar dependências no `pubspec.yaml` e importar o pacote `http`.
+- Trabalhar com `Future`, `async` e `await`.
+- Fazer uma requisição HTTP e verificar o código de status da resposta.
 
 ## Sobre o Dartpedia CLI
 
-É um programa de terminal com os comandos `help`, `version` e `search`. Estou usando ele para praticar os conceitos das aulas.
+É um programa de terminal com os comandos `help`, `version` e `wikipedia`. Estou usando ele para praticar os conceitos das aulas.
 
-Por enquanto, a busca só recebe o título e mostra uma resposta de exemplo. Ainda não faz uma busca de verdade na Wikipédia.
+Concluí a seção **Escreva código assíncrono**. Agora o programa faz uma requisição à API da Wikipédia em inglês para buscar o resumo do artigo informado. Usei o pacote `http` e os recursos `Future`, `async` e `await` para aguardar a resposta.
+
+Por enquanto, o resultado aparece como JSON bruto no terminal. Se a API responder com um status diferente de `200`, o programa mostra uma mensagem com esse código. Erros de conexão ainda não têm tratamento específico.
 
 ## Como rodar
 
@@ -32,23 +37,25 @@ cd dartpedia/cli
 dart pub get
 dart run bin/cli.dart help
 dart run bin/cli.dart version
-dart run bin/cli.dart search Dart Programming
+dart run bin/cli.dart wikipedia Brazil
 ```
+
+A consulta precisa de conexão com a internet. Use o título de um artigo da Wikipédia em inglês, como `Brazil`.
 
 Se quiser digitar o título depois que o programa abrir, use:
 
 ```sh
-dart run bin/cli.dart search
+dart run bin/cli.dart wikipedia
 ```
 
 ## Onde encontrar cada coisa
 
-| Pasta | O que guardei nela |
-| --- | --- |
-| `anotacoes/` | Minhas anotações das aulas. |
-| `dartpedia/cli/bin/` | O arquivo principal do programa. |
-| `dartpedia/cli/lib/` | O código de exemplo que veio na criação do projeto. |
-| `dartpedia/cli/test/` | O teste de exemplo que veio com o projeto. |
+| Pasta                 | O que guardei nela                                  |
+| --------------------- | --------------------------------------------------- |
+| `anotacoes/`          | Minhas anotações das aulas.                         |
+| `dartpedia/cli/bin/`  | O arquivo principal do programa.                    |
+| `dartpedia/cli/lib/`  | O código de exemplo que veio na criação do projeto. |
+| `dartpedia/cli/test/` | O teste de exemplo que veio com o projeto.          |
 
 ## Materiais que estou usando
 

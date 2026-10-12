@@ -44,3 +44,28 @@ o arguments parâmetro de List<String>?.
 17º -> arguments.join(' '): Concatena todos os elementos da arguments lista em uma única string, usando um espaço como separador. 
        Por exemplo, ['Dart', 'Programming']torna-se "Dart Programming". Isso é crucial para tratar entradas de linha de 
        comando com várias palavras como uma única frase de pesquisa.
+
+18º -> em pubspec.yaml voce configura os metadados, as dependências (como o httppacote) e os recursos do seu projeto Dart.
+
+19º -> import 'package:http/http.dart' as http: Esta linha importa o pacote http e atribui a ele o http. Depois disso, 
+       você pode se referir a classes e funções dentro do pacote http usando http.(por exemplo, http.Client, http.get). A as 
+       http é uma convenção padrão para evitar conflitos de nomenclatura caso outra biblioteca importada também tenha 
+       uma classe ou função com nome semelhante.
+
+20º -> Future<String>: é um tipo de retorno indica que esta função eventualmente produzirá um Stringresultado, mas não imediatamente, 
+       pois é uma operação assíncrona.
+
+21º -> async: palavra-chave marca a função como assíncrona, permitindo que você a utilize awaitdentro dela.
+
+22º -> await getWikipediaArticle(articleTitle)Como `is` getWikipediaArticleé uma asyncfunção, você precisa retornar o awaitresultado 
+       dela. Isso pausa a searchWikipediafunção até que o Future<String>resultado retornado por `is` getWikipediaArticle seja resolvido 
+       em um ` Stringarticle` contendo o conteúdo do artigo.
+
+23º -> print(articleContent) Exibe o resumo do artigo obtido como uma string JSON bruta no console
+
+24º -> arguments.sublist(1)Esta função extrai todos os elementos da argumentslista, começando pelo segundo elemento (índice 1). 
+       Isso remove efetivamente o wikipediapróprio comando, de forma que searchWikipediaa lista receba apenas os argumentos do 
+       título do artigo.
+
+25º -> searchWikipedia(inputArgs)Isso chama searchWikipediadiretamente. Como mainnão precisa fazer nada depois de searchWikipediaser 
+       concluído, você não precisa chamá await-lo de main. Portanto main, não precisa ser async.
