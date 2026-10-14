@@ -69,3 +69,48 @@ o arguments parâmetro de List<String>?.
 
 25º -> searchWikipedia(inputArgs)Isso chama searchWikipediadiretamente. Como mainnão precisa fazer nada depois de searchWikipediaser 
        concluído, você não precisa chamá await-lo de main. Portanto main, não precisa ser async.
+       
+26º -> library: Declara este arquivo como uma biblioteca, que define os limites e a interface pública de uma unidade reutilizável de código Dart.
+
+27º -> export 'src/command_runner_base.dart': é uma linha crucial que torna as declarações de command_runner_base.dart disponíveis para outros 
+       pacotes que importam o command_runnerpacote. Sem essa exportdeclaração, as classes e funções dentro command_runner_base.dartseriam 
+       privadas ao command_runner pacote e você não conseguiria usá-las em sua dartpedia aplicação.
+
+28º -> CommandRunneré uma classe que serve como substituta simplificada por enquanto. Seu runmétodo atualmente apenas imprime os argumentos 
+       recebidos. Em capítulos posteriores, você expandirá essa classe para lidar com a análise de comandos complexos e configuráveis.
+
+29º -> Future<void>: é um tipo de retorno que indica que este método pode executar operações assíncronas, mas não retorna um valor.
+
+30º -> Declarar main como ` asyncis` permite que ele use ` await. Como runner.run()`is` retorna um `` Future, aguardá-lo faz com que 
+       ` mainis` espere explicitamente pela conclusão do executor, garantindo uma ordem lógica clara e melhorando a propagação de erros.
+
+31º -> var runner = CommandRunner(): Cria uma instância da CommandRunnerclasse do seu novo command_runner pacote.
+
+32º -> await runner.run(arguments): Chama o run método na CommandRunner instância, passando os argumentos da linha de comando.
+
+33º -> As funções printUsage`__init__` searchWikipedia, `__outit__` e `__outit__` getWikipediaArticleforam completamente removidas do pacote 
+       `commandline` cli/bin/cli.dart. Sua lógica será reformulada e integrada ao command_runnerpacote `commandline` em capítulos futuros, 
+       como parte da construção da estrutura completa da linha de comando.
+
+34º -> Campos ( final String name;, final OptionType type;) : Variáveis ​​que armazenam os dados do objeto. Declará-las como finalgarantem 
+       que não possam ser alteradas após a criação.
+
+35º -> Construtor ( Option(...)) : Instancia novos Optionobjetos. A this.namesintaxe é uma inicialização formal — um atalho do Dart que 
+       atribui o argumento diretamente ao campo de instância antes da execução do corpo do construtor.
+
+36º -> Parâmetros nomeados ( {required this.type}) : Os parâmetros dentro de chaves {}são passados ​​pelo nome (por exemplo, Option('verbose', type: OptionType.flag)). 
+       A requiredpalavra-chave torna o parâmetro obrigatório.
+
+37º -> Tipos anuláveis ​​( String?, Object?) : O ponto de interrogação ?indica que um campo é opcional e pode conter null. Quando os 
+       chamadores omitem helpou abbr, eles assumem o valor padrão null.
+
+38º -> Getter ( get usage) : Um getter calcula um valor sob demanda quando acessado, formatando a string de ajuda com base na existência de uma abreviação.
+
+39º -> optionsmap( Map<Option, Object?>) : Associa cada Optioninstância à sua entrada de usuário analisada.
+
+40º -> where()método emflag() : Filtra chaves de mapa para inspecionar apenas sinalizadores booleanos ( option.type == OptionType.flag), ignorando opções 
+       que recebem argumentos de string.
+
+41º -> Type cast ( as bool) : Diz ao verificador de tipo para tratar o valor como um boolporque flags sempre armazenam valores booleanos.
+
+42º -> Tipo de retorno do registro ( ({Option option, Object? input})) : Retorna um registro nomeado leve agrupando tanto o Option e seu valor sem declarar uma classe separada.

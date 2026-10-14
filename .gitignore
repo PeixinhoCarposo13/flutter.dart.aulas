@@ -1,4 +1,4 @@
-# Dart / Flutter - generated files
+# Dart / Flutter: arquivos gerados
 .dart_tool/
 .packages
 .pub/
@@ -9,7 +9,7 @@ coverage/
 .flutter-plugins-dependencies
 **/flutter_*.png
 
-# Local IDE / OS state
+# Configurações locais do editor e do sistema
 .idea/
 *.iml
 .vscode/*
@@ -19,7 +19,7 @@ coverage/
 Thumbs.db
 *.log
 
-# Secrets and local environment
+# Credenciais e configurações locais de ambiente
 .env
 .env.*
 !.env.example
@@ -40,11 +40,17 @@ key.properties
 credentials.json
 secrets.json
 
-# Flutter platform-generated ephemeral files
+# Arquivos temporários gerados para as plataformas Flutter
 **/ios/Flutter/ephemeral/
 **/macos/Flutter/ephemeral/
 **/windows/flutter/ephemeral/
 **/linux/flutter/ephemeral/
 
-# Keep pubspec.lock for reproducible application/CLI builds.
-# Never ignore source, tests, pubspec.yaml, or README files.
+# Mantém o pubspec.lock da CLI para reproduzir suas dependências.
+# Mantém código-fonte, testes, pubspec.yaml e READMEs no repositório.
+
+# O pacote de biblioteca usa seu pubspec.yaml para resolver dependências.
+/dartpedia/command_runner/pubspec.lock
+
+# Exceção explícita para preservar o lock do aplicativo de terminal.
+!/dartpedia/cli/pubspec.lock

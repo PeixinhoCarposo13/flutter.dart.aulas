@@ -1,65 +1,51 @@
 # Meus estudos de Dart e Flutter
 
-Criei este repositório para guardar as aulas, anotações e exercícios que estou fazendo enquanto aprendo Dart e Flutter. Por enquanto, estou começando pelos fundamentos de Dart e colocando em prática com um programa que roda no terminal.
+Criei este repositório para guardar meus exercícios e anotações enquanto aprendo Dart e Flutter. Por enquanto, estou praticando Dart com programas de terminal.
 
-## O que tem aqui
+## Onde parei
 
-- [Minhas anotações de Dart](anotacoes/anotacoes.txt)
-- [Dartpedia CLI](dartpedia/cli/README.md), o projeto que estou desenvolvendo nas aulas
-- [Código principal do projeto](dartpedia/cli/bin/cli.dart)
+Parei na aula **Defina classes e objetos**. Estou criando o pacote local `command_runner` e usando a classe `Option` na CLI. Já estudei entrada de dados, argumentos, `Future`, `async`, `await` e requisições HTTP; minhas [anotações](anotacoes/anotacoes.txt) guardam esse percurso.
 
-## O que aprendi até agora
+O programa atual cria a opção `verbose` e exibe seu nome e sua ajuda. Ele ainda não interpreta argumentos nem busca artigos da Wikipédia. O método `CommandRunner.run` apenas mostra a lista recebida.
 
-- Criar e executar um projeto Dart.
-- Receber argumentos pelo terminal e trabalhar com listas.
-- Colocar valores de variáveis dentro de strings.
-- Usar `const` e `final`.
-- Trabalhar com null safety e os operadores `?` e `??`.
-- Ler o que o usuário digita usando `dart:io`.
-- Adicionar dependências no `pubspec.yaml` e importar o pacote `http`.
-- Trabalhar com `Future`, `async` e `await`.
-- Fazer uma requisição HTTP e verificar o código de status da resposta.
+## O que estou praticando
 
-## Sobre o Dartpedia CLI
+- Classes, objetos, construtores e parâmetros posicionais e nomeados.
+- Campos `final`, tipos anuláveis, getters e a enumeração `OptionType`.
+- Mapas e consultas com `where`, `any` e `firstWhere` em `ArgResults`.
+- Records com campos nomeados e a interface pública de um pacote local.
 
-É um programa de terminal com os comandos `help`, `version` e `wikipedia`. Estou usando ele para praticar os conceitos das aulas.
+## Arquivos de estudo
 
-Concluí a seção **Escreva código assíncrono**. Agora o programa faz uma requisição à API da Wikipédia em inglês para buscar o resumo do artigo informado. Usei o pacote `http` e os recursos `Future`, `async` e `await` para aguardar a resposta.
+- [CLI](dartpedia/cli/README.md): meu programa principal e a função gerada `calculate`, com seu teste.
+- [command_runner](dartpedia/command_runner/README.md): as classes atuais, um exemplo de `Option` e testes de ajuda, consultas e execução.
+- [Programa principal](dartpedia/cli/bin/cli.dart).
 
-Por enquanto, o resultado aparece como JSON bruto no terminal. Se a API responder com um status diferente de `200`, o programa mostra uma mensagem com esse código. Erros de conexão ainda não têm tratamento específico.
+## Como executo
 
-## Como rodar
-
-Você precisa ter o SDK do Dart instalado em uma versão compatível com o `pubspec.yaml` do projeto (`^3.13.5`). Depois, abra o terminal na pasta deste repositório e rode:
+Uso um SDK compatível com `^3.13.5`, como definido nos dois `pubspec.yaml`. A partir da raiz:
 
 ```sh
 cd dartpedia/cli
 dart pub get
-dart run bin/cli.dart help
-dart run bin/cli.dart version
-dart run bin/cli.dart wikipedia Brazil
+dart run bin/cli.dart
 ```
 
-A consulta precisa de conexão com a internet. Use o título de um artigo da Wikipédia em inglês, como `Brazil`.
+A saída atual é:
 
-Se quiser digitar o título depois que o programa abrir, use:
+```text
+Defined option: verbose
+Usage: -v,--verbose: Display extra logging information.
+```
+
+Para conferir cada pacote, entro em `dartpedia/cli` ou `dartpedia/command_runner` e executo:
 
 ```sh
-dart run bin/cli.dart wikipedia
+dart pub get
+dart analyze
+dart test
 ```
 
-## Onde encontrar cada coisa
+## Materiais
 
-| Pasta                 | O que guardei nela                                  |
-| --------------------- | --------------------------------------------------- |
-| `anotacoes/`          | Minhas anotações das aulas.                         |
-| `dartpedia/cli/bin/`  | O arquivo principal do programa.                    |
-| `dartpedia/cli/lib/`  | O código de exemplo que veio na criação do projeto. |
-| `dartpedia/cli/test/` | O teste de exemplo que veio com o projeto.          |
-
-## Materiais que estou usando
-
-- [Documentação do Dart](https://dart.dev/)
-- [Documentação do Flutter](https://docs.flutter.dev/)
-
-Vou adicionando novas anotações e exercícios conforme avanço nas aulas.
+Estou acompanhando a [documentação do Dart](https://dart.dev/) e a [documentação do Flutter](https://docs.flutter.dev/). Vou acrescentando exercícios conforme avanço nas aulas.
